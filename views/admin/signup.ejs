@@ -1,0 +1,39 @@
+<%- include ("../partials/header") %>
+
+<header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1623851467157-5eb7199d0f18?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>About Me</h1>
+                    <span class="subheading">This is what I do.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<h1>Sign up Page</h1>
+
+<div class="container">
+    <h1 class="text-center">Sign in Form</h1>
+    <h3 class="text-center" style="color:red;">Admins Only</h3>
+    <form action="/signup" method="POST">
+        <div class="form-group">
+          <label for="eposta>Email address</label>
+          <input type="email" class="form-control" id="eposta" aria-describedby="emailHelp" placeholder="Enter email" name="username">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="sifre">Password</label>
+          <input type="password" class="form-control" id="sifre" placeholder="Password" name="password">
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<%- include ("../partials/footer") %>

@@ -1,0 +1,48 @@
+<%- include ("./partials/header") %>
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1623888884968-b5a895f882dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Clean Blog</h1>
+                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <% data.forEach( (d)=>{ %>
+        <div class="col-lg-4 col-xl-5 mx-auto">
+            <img class="img-thumbnail" src="<%= d.image %>" alt="image crashed">  
+        </div>
+        <div class="col-lg-8 col-xl-7">
+            <div class="post-preview">
+                <a href="post.html">
+                    <h2 class="post-title">
+                        <%= d.postTitle %>
+                    </h2>
+                    <h3 class="post-subtitle">
+                        <%= d.postSubtitle %>
+                    </h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#!">
+                        <%= d.author %>
+                    </a>
+                    on September 24, 2021
+                </p> 
+            </div>
+            <hr class="my-4" />  
+        </div>
+        <% }); %> 
+        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+    </div>
+</div>
+
+<%- include ("./partials/footer") %>
