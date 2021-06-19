@@ -9,9 +9,9 @@ const mongoose       = require("mongoose"),
 
 const { request } = require("express");
 //Routes
-const indexRoutes = require("./routes/indexRoutes");
-const userModel = require("./models/userModel");
-      adminRoutes = require("./routes/adminRoutes");  
+const indexRoutes   = require("./routes/indexRoutes");
+const userModel     = require("./models/userModel");
+      adminRoutes   = require("./routes/adminRoutes");  
 
 
 //App Config
