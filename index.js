@@ -15,7 +15,7 @@ const userModel     = require("./models/userModel");
 
 
 //App Config
-mongoose.connect("mongodb://localhost/Blog")
+mongoose.connect("mongodb://localhost/cemsa", { useNewUrlParser: true, useUnifiedTopology: true });
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
@@ -30,7 +30,9 @@ app.use(require("express-session")({
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser);
+passport.deserializeUser(User.deserializeUser);
 
 
 //Routes Using
