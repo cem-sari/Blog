@@ -1,5 +1,5 @@
 const express        = require('express'),
-      user           = require("../models/userModel"),
+      User           = require("../models/userModel"),
       passport       = require('passport'),
       router         = express.Router();
 
@@ -31,9 +31,16 @@ let adminActions = [
     },
 ]
 
-router.get("/admin", (req,res)=>{
-    res.render("admin/admin",{adminActions:adminActions});
-})
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()) {
+        return next();
+    } else
+    res.redirect("/signin")
+};
+
+router.get("/admin", isLoggedIn , (req, res)=>{
+        res.render("admin/admin",{adminActions:adminActions});
+});
 
 router.get("/signin", (req, res)=>{
     res.render('admin/signin')
@@ -41,7 +48,7 @@ router.get("/signin", (req, res)=>{
 
 router.post("/signin", passport.authenticate("local",
     {
-        successRedirect:"/", //eslesiyorsa //gitmiyor oc
+        successRedirect:"/", //eslesiyorsa
         failureRedirect:"/signin" //eslesmiyorsa
     }),(req, res)=>{});
 
@@ -52,15 +59,21 @@ router.get("/signup", (req,res)=>{
 router.post("/signup", (req, res)=>{
 
     let newUser = new User({username:req.body.username});
-    User.register(newUser, req.body.password, (err, user)=>{
+    User.register(newUser, req.body.password, (err, User)=>{
         if(err){
             console.log(err);
             res.redirect("/signin");
         }
-        passport.authenticate("local")(req, res, ()=>{ //username password authlandi --44-45--
+        passport.authenticate("local")(req, res, ()=>{
+            //username password authlandi --44-45--
             res.redirect('/about'); //redirect doesn't work
         });
     })
+});
+
+router.get("/signout", (req, res)=>{
+    req.logout();
+    res.redirect("/");
 });
 
 module.exports = router;

@@ -2,15 +2,13 @@ const mongoose       = require("mongoose"),
       express        = require("express"),
       passport       = require("passport"),
       LocalStrategy  = require("passport-local"),
-      expressSession = require("express-session");
+      expressSession = require("express-session"),
       User           = require("./models/userModel"),
       bodyParser     = require("body-parser"),
       app            = express();
 
-const { request } = require("express");
 //Routes
-const indexRoutes   = require("./routes/indexRoutes");
-const userModel     = require("./models/userModel");
+const indexRoutes   = require("./routes/indexRoutes"),
       adminRoutes   = require("./routes/adminRoutes");  
 
 
@@ -31,8 +29,14 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser);
-passport.deserializeUser(User.deserializeUser);
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//Share Current User Info With All Routes
+app.use((req, res, next)=>{
+    res.locals.currentUser=req.user;
+    next();
+});
 
 
 //Routes Using

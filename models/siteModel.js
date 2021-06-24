@@ -1,6 +1,6 @@
 const mongoose            = require("mongoose");
 
-const sitesSchema         = new mongoose.Schema({
+const siteSchema         = new mongoose.Schema({
     homeImage           : { type:String, required: "Cannot be empty" },
     aboutImage          : { type:String, required: "Cannot be empty" },
     aboutText           : { type:String, required: "Cannot be empty" },
@@ -8,4 +8,4 @@ const sitesSchema         = new mongoose.Schema({
     contactText         : { type:String, required: "Cannot be empty" }
 });
 
-module.exports = mongoose.model("Site", sitesSchema);
+module.exports = mongoose.model("Site", siteSchema);

@@ -7,7 +7,7 @@ var blogSchema = new mongoose.Schema({
     blogImage           : { type:String, required:"Cannot be empty" },
     blogImage           : { type:String, required:"Cannot be empty" },
     blog                : { type:String, required:"Cannot be empty" },
-    date                : { type: Date, default : Date.now },
+    date                : { type: Date, default : Date.now }
 
 });
 
