@@ -38,11 +38,18 @@ let adminActions = [
      res.redirect("/signin")
  };
 
+ function isLoggedOut(req, res, next){
+    if(req.isAuthenticated()) {
+        res.redirect("/")
+    } else
+    return next();
+};
+
 router.get("/admin", isLoggedIn, (req, res)=>{
         res.render("admin/admin",{adminActions:adminActions});
 });
 
-router.get("/signin", (req, res)=>{
+router.get("/signin", isLoggedOut, (req, res)=>{
     res.render('admin/signin')
 });  
 
@@ -52,7 +59,7 @@ router.post("/signin", passport.authenticate("local",
         failureRedirect:"/signin" //eslesmiyorsa
     }),(req, res)=>{});
 
-router.get("/signup", (req,res)=>{
+router.get("/signup", isLoggedOut, (req,res)=>{
     res.render('admin/signup')
 });
 
