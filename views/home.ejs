@@ -16,26 +16,27 @@
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
-        <% data.forEach( (d)=>{ %>
+        <% foundBlogs.forEach( (d)=>{ %>
         <div class="col-lg-4 col-xl-5 mx-auto">
-            <img class="img-thumbnail" src="<%= d.image %>" alt="image crashed">  
+            <img class="img-thumbnail" src="<%= d.blogImage %>" alt="image crashed">  
         </div>
         <div class="col-lg-8 col-xl-7">
             <div class="post-preview">
-                <a href="post.html">
+                <a href="/blogs/<%= d.id %>">
                     <h2 class="post-title">
-                        <%= d.postTitle %>
+                        <%= d.title %>
                     </h2>
                     <h3 class="post-subtitle">
-                        <%= d.postSubtitle %>
+                        <%= d.subtitle %>
                     </h3>
                 </a>
                 <p class="post-meta">
                     Posted by
                     <a href="#!">
-                        <%= d.author %>
+                        cemsari
+                        <!-- <%= d.author %> -->
                     </a>
-                    on September 24, 2021
+                    <%= d.date %>
                 </p> 
             </div>
             <hr class="my-4" />  

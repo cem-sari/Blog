@@ -12,33 +12,8 @@
         <!-- Font Awesome icons (free version)-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/main.css" rel="stylesheet" />
+        <link href="/css/main.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-
-            $(document).ready(function(){
-                $("#myButton").click(function(){
-                    var title       = $("#blogTitle").val();
-                    var subtitle    = $("#subtitle").val();
-                    var blogImage   = $("#blogImage").val();
-                    var blogText    = CKEDITOR.instances.myTextArea.getData();
-
-                    var data = {
-                        title : title,
-                        subtitle : subtitle,
-                        blogImage : blogImage,
-                        blogText : blogText
-                    };
-
-                    $.post('addnewblog', {data: data})
-                        .then(function(addedBlog){
-                            console.log(addedBlog);
-                        });
-
-                });
-            });
-
-        </script>
     </head>
     <body>
         <!-- Navigation-->
@@ -66,39 +41,31 @@
                 </div>
             </div>
         </nav>
-<header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1623851467157-5eb7199d0f18?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')">
+
+<header class="masthead" style="background-image: url('<%= foundBlog.blogImage %>')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="page-heading">
-                    <h1>Sign Me</h1>
-                    <span class="subheading">This is what I do.</span>
+                    <h1><%= foundBlog.title %></h1>
+                    <h3 class="subheading"><%= foundBlog.subtitle %></h3>
+                    <span class="meta">Posted By <a href="#">Cem Sari</a></span>
+                    <%= foundBlog.data %>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-    <div class="container">
-        <h2 class="text-align: center; margin-bottom: 40px;">Add New Blog</h2>
-        <form>
-            <div class="form-group">
-                <label for="blogTitle">Blog Title</label>
-                <input type="text" class="form-control" id="blogTitle" placeholder="Blog Title">
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <%- foundBlog.blogText %>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="subtitle">Subtitle</label>
-                <input type="text" class="form-control" id="subtitle" placeholder="Subtitle">
-            </div>
-            <div class="form-group">
-                <label for="blogImage">Blog Image</label>
-                <input type="text" class="form-control" id="blogImage">
-            </div> <br>
-            <textarea name="editor" id="myTextArea"></textarea>
-            <button type="button" id="myButton" class="btn btn-primary">Publish</button>
-        </form>
-    </div>
-
+        </div>
+    </article>
 
 <footer class="border-top">
     <div class="container px-4 px-lg-5">
@@ -138,8 +105,6 @@
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined" crossorigin="anonymous"></script>
 <!-- Core theme JS-->
-<script src="js/main.js"></script>
-<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
-<script> CKEDITOR.replace( 'myTextArea' ); </script>
+<script src="../js/main.js"></script>
 </body>
 </html>

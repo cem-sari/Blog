@@ -31,14 +31,14 @@ let adminActions = [
     },
 ]
 
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()) {
-        return next();
-    } else
-    res.redirect("/signin")
-};
+ function isLoggedIn(req, res, next){
+     if(req.isAuthenticated()) {
+         return next();
+     } else
+     res.redirect("/signin")
+ };
 
-router.get("/admin", isLoggedIn , (req, res)=>{
+router.get("/admin", isLoggedIn, (req, res)=>{
         res.render("admin/admin",{adminActions:adminActions});
 });
 
